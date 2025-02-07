@@ -1,0 +1,8 @@
+__pycache__
+.venv/
+.~lock*
+*.kate-swp
+.chromium-browser/
+setup.py
+runme.py
+requirements.txt

@@ -1,0 +1,10 @@
+We will need to know how to trigger a PUT, POST, etc.
+We should try async/sync and test the notion that "FastAPI will still work asynchronously and be extremely fast"
+
+https://fastapi.tiangolo.com/async/#in-a-hurry:~:text=FastAPI%20will%20still%20work%20asynchronously%20and%20be%20extremely%20fast.
+
+What is a Pydantic model
+
+What is an ORM?
+
+Add aliases for each activity

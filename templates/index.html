@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Online Editor</title>
+    <link rel="icon" href="static/atom.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            min-height: 70px;
+            min-width: 100px;
+        }
+
+        .black-button { /* Black background */
+            color: black;
+            background-color: #f0f0f0; /* White text */
+            padding: 10px 20px;        /* Padding */
+            text-align: center;        /* Center the text */
+            text-decoration: none;     /* Remove underline */
+            display: inline-flex;      /* Flexbox for alignment */
+            align-items: center;       /* Center the content vertically */
+            font-size: 14px;
+            font-weight: bold;         /* Font size */        /* Bold text */
+            margin: 4px;               /* Margin */
+            cursor: pointer;           /* Pointer/hand icon */
+            border-radius: 5px;        /* Rounded corners */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+        }
+
+        .black-button:active {
+            background-color: #333333; /* Dark gray background on click */
+            color: #ffffff;            /* White text on click */
+            transform: scale(0.98);    /* Slightly shrink the button on click */
+        }
+
+        .button-container {
+            height: 50px; /* Fixed height */
+            display: flex;
+            background-color: #c0c0c0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .editor-output-container {
+            flex-grow: 1;
+            background-color: #e0e0e0;
+            /* Added for visualization */
+            display: flex;
+        }
+
+        #editor {
+            height: 100%;
+            width: 50%; /* Adjust width as needed */
+            font-size: 18px;
+            font-family: monospace;
+            /* Don't need this, because Ace Editor does it automatically:  overflow-y: auto; /* Enable scrolling if content exceeds height */
+        }
+
+        #file-info {
+            padding: 10px;
+            background-color: #f0f0f0;
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 1px solid #ccc;
+            font-family: monospace;
+        }
+
+        #loadingIcon {
+            font-size: 16px; /* Size of the icon */
+        }
+
+        #output {
+            height: 100%; /* Match height with editor */
+            width: 50%; /* Adjust width as needed */
+            background-color: black; /* Dark background color */
+            color: white; /* White text color for contrast */
+            overflow-y: auto; /* Enable scrolling if content exceeds height */
+            font-size: 18px;
+            font-family: monospace;
+            padding-left: 10px;
+            color: rgb(70, 242, 70);
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="editor-output-container">
+            <div id="editor" contenteditable="true"></div>
+            <div id="output"></div>
+        </div>
+        <div class="button-container">
+            <button class="black-button" id="runButton">
+                <span id="buttonText">Run Code</span>
+                <i class="fas fa-circle-notch fa-spin" id="loadingIcon" style="display: none; margin-left: 10px;"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/python");
+
+        let state = "Editing"; // also "Running"
+
+        $("#runButton").click(function() {
+            if (state === "Editing") {
+                state = "Running";
+                $("#buttonText").text("Cancel");
+
+                $.ajax({
+                    url: '/run',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({code: editor.getValue()}),
+                    success: function(response) {
+                        state = "Editing";
+                        $("#buttonText").text("Run Code");
+                        $("#output").text(response.output);
+                    }
+                });
+            }
+            else {
+                state = "Editing";
+                $("#buttonText").text("Run Code");
+
+                $.ajax({
+                    url: '/cancel',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({code: code}),
+                    success: function(response) {
+                        $("#output").text(response.output);
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
+        document.getElementById("runButton").addEventListener("click", function() {
+            let loadingIcon = document.getElementById("loadingIcon");
+
+            // Show the loading icon
+            loadingIcon.style.display = "inline-block";
+
+            // Hide the loading icon after 2 seconds
+            setTimeout(function() {
+                loadingIcon.style.display = "none";
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
