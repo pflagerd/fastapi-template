@@ -1,9 +1,0 @@
-#!/bin/bash
-if ! (which python3 >/dev/null && python3 --version | grep ' 3.' >/dev/null); then
-  echo "You must have python 3 installed to run this."
-  exit 1
-fi
-
-! [ -f setmeup.py ] && ln -s ../../setmeup.py .
-! [ -f requirements.txt ] && ln -s ../../requirements.txt
-python3 $(dirname "$(readlink -f "$0")")/setmeup.py
