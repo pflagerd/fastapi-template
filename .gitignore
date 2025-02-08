@@ -3,6 +3,3 @@ __pycache__
 .~lock*
 *.kate-swp
 .chromium-browser/
-setup.py
-runme.py
-requirements.txt
