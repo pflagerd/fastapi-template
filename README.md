@@ -5,8 +5,6 @@ This repository contains artifacts created by David and Dan (D&D) when they exec
 <br>
 
 ## TODO
-   Execute [First Steps](https://fastapi.tiangolo.com/tutorial/first_steps/).
-   * [#10](https://github.com/pflagerd/fastapi_learn_tutorial_user_guide/issues/10)
 
 <br>
 
@@ -21,6 +19,10 @@ You must have python3 and git.
 
 Git clone current repo to your local machine
 
-​	`git clone https://github.com/pflagerd/fastapi_learn_tutorial_user_guide.git`
+​	`git clone https://github.com/pflagerd/fastapi_template.git`
 
-Navigate your browser to an issue, and follow the instructions in its description.
+Type ./RUNME
+
+You should see a Chromium browser with some tabs launched.
+
+Modify RUNME to change which tabs you see.
