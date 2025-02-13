@@ -4,4 +4,4 @@ if ! (which python3 >/dev/null && python3 --version | grep ' 3.' >/dev/null); th
   exit 1
 fi
 
-python3 $(dirname "$(readlink -f "$0")")/runme.py "https://fastapi.tiangolo.com/tutorial/path-params/" "https://github.com/fastapi/fastapi/tree/master/docs_src/path_params/" "https://github.com/pflagerd/fastapi_learn_tutorial_user_guide/tree/main/path_params/tutorial001.py"
+python3 $(dirname "$(readlink -f "$0")")/runme.py "https://github.com/pflagerd/fastapi-template"

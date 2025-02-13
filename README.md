@@ -1,4 +1,4 @@
-# fastapi_learn_tutorial_user_guide
+# fastapi_template
 
 This repository contains artifacts created by David and Dan (D&D) when they executed the tutorial at [FastAPI > Learn > Tutorial - User Guide](https://fastapi.tiangolo.com/tutorial/).
 
