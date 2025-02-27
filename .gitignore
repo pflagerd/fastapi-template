@@ -4,4 +4,3 @@ __pycache__
 *.kate-swp
 *.swp
 .chromium-browser/
-requirements.txt
