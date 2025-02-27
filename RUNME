@@ -4,4 +4,5 @@ if ! (which python3 >/dev/null && python3 --version | grep ' 3.' >/dev/null); th
   exit 1
 fi
 
-python3 $(dirname "$(readlink -f "$0")")/runme.py "https://github.com/pflagerd/fastapi-template"
+chromium-browser "--user-data-dir=$(realpath $PWD)/.chromium-browser" --new-window" "https://github.com/pflagerd/fastapi-template" "http://127.0.0.1:8000" "http://127.0.0.1:8000/docs" "http://127.0.0.1:8000/redoc" "http://127.0.0.1:8000/openapi.json" &
+python3 $(dirname "$(readlink -f "$0")")/runme.py
