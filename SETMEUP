@@ -4,4 +4,8 @@ if ! (which python3 >/dev/null && python3 --version | grep ' 3.' >/dev/null); th
   exit 1
 fi
 
+pushd $(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
 python3 $(dirname "$(readlink -f "$0")")/setmeup.py
+
+popd
