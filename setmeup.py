@@ -14,7 +14,7 @@ def get_os():
 
     if os_name == "Linux":
         # Get detailed Linux distribution info
-        return dist_name = distro.name(pretty=True)  # Pretty format like "Kubuntu 24.10"
+        return distro.name(pretty=True)  # Pretty format like "Kubuntu 24.10"
     else:
         # For non-Linux systems
         os_release = platform.release()
