@@ -7,6 +7,6 @@ fi
 pushd $(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 chromium-browser "--user-data-dir=$(realpath $PWD)/.chromium-browser" --new-window "https://github.com/pflagerd/fastapi-template" "http://127.0.0.1:8888" "http://127.0.0.1:8888/docs" "http://127.0.0.1:8888/redoc" "http://127.0.0.1:8888/openapi.json" &
-python3 $(dirname "$(readlink -f "$0")")/runme.py
+python3 ./runme.py
 
 popd
