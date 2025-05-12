@@ -4,9 +4,9 @@ if ! (which python3 >/dev/null && python3 --version | grep ' 3.' >/dev/null); th
   exit 1
 fi
 
-pushd $(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+pushd $(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) >/dev/null
 
 chromium-browser "--user-data-dir=$(realpath $PWD)/.chromium-browser" --new-window "https://github.com/pflagerd/fastapi-template" "http://127.0.0.1:8888" "http://127.0.0.1:8888/docs" "http://127.0.0.1:8888/redoc" "http://127.0.0.1:8888/openapi.json" &
 python3 ./runme.py
 
-popd
+popd >/dev/null
